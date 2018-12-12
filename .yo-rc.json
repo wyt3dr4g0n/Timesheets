@@ -1,0 +1,33 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.cayuse.timesheets"
+    },
+    "jhipsterVersion": "5.7.0",
+    "applicationType": "monolith",
+    "baseName": "Timesheets",
+    "packageName": "com.cayuse.timesheets",
+    "packageFolder": "com/cayuse/timesheets",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mssql",
+    "prodDatabaseType": "mssql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NzliYTQ3ZTY2ODUwODk2NmIzMDYxM2IxMTBhNjVhNGNiNTZiNjY3MjlmM2M0YjJhYzVkYWRhNjNmODg1ZDZmMmE2NDI2ZTY3MTgwZThiZTMxOGNiMmQwMWE4OTM0NGM3ZTY2NjMwYzJmODYwZDBhMzIzN2RlM2EwZWE0NjgxNWI=",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": false
+  }
+}
