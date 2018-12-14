@@ -1,0 +1,18 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "payCodeDescription",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20181213000043",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "pay_code",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

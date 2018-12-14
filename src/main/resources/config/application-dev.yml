@@ -44,9 +44,9 @@ spring:
             indent-output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:sqlserver://localhost:1433;database=Timesheets
+        url: jdbc:sqlserver://localhost:1433;database=TimesheetsDev
         username: SA
-        password: yourStrong(!)Password
+        password: plasmA26107
         hikari:
             auto-commit: false
             data-source-properties:

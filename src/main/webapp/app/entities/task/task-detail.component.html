@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="task">
+            <h2><span>Task</span> {{task.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Task Id</span></dt>
+                <dd>
+                    <span>{{task.taskId}}</span>
+                </dd>
+                <dt><span>Task Description</span></dt>
+                <dd>
+                    <span>{{task.taskDescription}}</span>
+                </dd>
+                <dt><span>Project</span></dt>
+                <dd>
+                    <span>{{task.project}}</span>
+                </dd>
+                <dt><span>Project Id</span></dt>
+                <dd>
+                    <div *ngIf="task.projectId">
+                        <a [routerLink]="['/project', task.projectId?.id, 'view']">{{task.projectId?.projectId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/task', task.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

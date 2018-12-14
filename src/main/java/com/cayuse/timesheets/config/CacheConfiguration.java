@@ -41,6 +41,12 @@ public class CacheConfiguration {
             cm.createCache(com.cayuse.timesheets.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.cayuse.timesheets.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.cayuse.timesheets.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.cayuse.timesheets.domain.Task.class.getName(), jcacheConfiguration);
+            cm.createCache(com.cayuse.timesheets.domain.Project.class.getName(), jcacheConfiguration);
+            cm.createCache(com.cayuse.timesheets.domain.Project.class.getName() + ".taskIds", jcacheConfiguration);
+            cm.createCache(com.cayuse.timesheets.domain.SubCostCategory.class.getName(), jcacheConfiguration);
+            cm.createCache(com.cayuse.timesheets.domain.PayCode.class.getName(), jcacheConfiguration);
+            cm.createCache(com.cayuse.timesheets.domain.Time.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

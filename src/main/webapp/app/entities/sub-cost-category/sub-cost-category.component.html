@@ -1,0 +1,54 @@
+<div>
+    <h2 id="page-heading">
+        <span>Sub Cost Categories</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sub-cost-category" [routerLink]="['/sub-cost-category/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Sub Cost Category
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="subCostCategories">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Sub Cost Category Description</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let subCostCategory of subCostCategories ;trackBy: trackId">
+                <td><a [routerLink]="['/sub-cost-category', subCostCategory.id, 'view' ]">{{subCostCategory.id}}</a></td>
+                <td>{{subCostCategory.subCostCategoryDescription}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/sub-cost-category', subCostCategory.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/sub-cost-category', subCostCategory.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sub-cost-category/'+ subCostCategory.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

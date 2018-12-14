@@ -1,0 +1,33 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "projectId",
+            "otherEntityName": "project",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "projectId"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "taskId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "taskDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "project",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20181212223143",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "task",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

@@ -1,0 +1,72 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "projectId",
+            "otherEntityName": "project",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "projectId"
+        },
+        {
+            "relationshipName": "taskId",
+            "otherEntityName": "task",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "taskId"
+        },
+        {
+            "relationshipName": "subCostCategory",
+            "otherEntityName": "subCostCategory",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "subCostCategoryDescription"
+        },
+        {
+            "relationshipName": "payCode",
+            "otherEntityName": "payCode",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "payCodeDescription"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "cost",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "forBilling",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "forPayroll",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "billingDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "attachments",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "notes",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20181213003834",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "time",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

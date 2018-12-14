@@ -1,0 +1,95 @@
+<div>
+    <h2 id="page-heading">
+        <span>Times</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-time" [routerLink]="['/time/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Time
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="times">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Date</span></th>
+            <th><span>Cost</span></th>
+            <th><span>For Billing</span></th>
+            <th><span>For Payroll</span></th>
+            <th><span>Billing Description</span></th>
+            <th><span>Description</span></th>
+            <th><span>Attachments</span></th>
+            <th><span>Notes</span></th>
+            <th><span>Project Id</span></th>
+            <th><span>Task Id</span></th>
+            <th><span>Sub Cost Category</span></th>
+            <th><span>Pay Code</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let time of times ;trackBy: trackId">
+                <td><a [routerLink]="['/time', time.id, 'view' ]">{{time.id}}</a></td>
+                <td>{{time.date | date:'mediumDate'}}</td>
+                <td>{{time.cost}}</td>
+                <td>{{time.forBilling}}</td>
+                <td>{{time.forPayroll}}</td>
+                <td>{{time.billingDescription}}</td>
+                <td>{{time.description}}</td>
+                <td>
+                    <a *ngIf="time.attachments" (click)="openFile(time.attachmentsContentType, time.attachments)">open</a>
+                    <span *ngIf="time.attachments">{{time.attachmentsContentType}}, {{byteSize(time.attachments)}}</span>
+                </td>
+                <td>{{time.notes}}</td>
+                <td>
+                    <div *ngIf="time.projectId">
+                        <a [routerLink]="['../project', time.projectId?.id, 'view' ]" >{{time.projectId?.projectId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="time.taskId">
+                        <a [routerLink]="['../task', time.taskId?.id, 'view' ]" >{{time.taskId?.taskId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="time.subCostCategory">
+                        <a [routerLink]="['../sub-cost-category', time.subCostCategory?.id, 'view' ]" >{{time.subCostCategory?.subCostCategoryDescription}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="time.payCode">
+                        <a [routerLink]="['../pay-code', time.payCode?.id, 'view' ]" >{{time.payCode?.payCodeDescription}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/time', time.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/time', time.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'time/'+ time.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

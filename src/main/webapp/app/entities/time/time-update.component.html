@@ -1,0 +1,110 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-time-heading">Create or edit a Time</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!time.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="time.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_date">Date</label>
+                    <div class="input-group">
+                        <input id="field_date" type="text" class="form-control" name="date" ngbDatepicker  #dateDp="ngbDatepicker" [(ngModel)]="time.date"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cost">Cost</label>
+                    <input type="number" class="form-control" name="cost" id="field_cost"
+                        [(ngModel)]="time.cost" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_forBilling">For Billing</label>
+                    <input type="number" class="form-control" name="forBilling" id="field_forBilling"
+                        [(ngModel)]="time.forBilling" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_forPayroll">For Payroll</label>
+                    <input type="number" class="form-control" name="forPayroll" id="field_forPayroll"
+                        [(ngModel)]="time.forPayroll" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_billingDescription">Billing Description</label>
+                    <input type="text" class="form-control" name="billingDescription" id="field_billingDescription"
+                        [(ngModel)]="time.billingDescription" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="time.description" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_attachments">Attachments</label>
+                    <div>
+                        <div *ngIf="time.attachments" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(time.attachmentsContentType, time.attachments)">open</a><br>
+                            <span class="pull-left">{{time.attachmentsContentType}}, {{byteSize(time.attachments)}}</span>
+                            <button type="button" (click)="time.attachments=null;time.attachmentsContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_attachments" (change)="setFileData($event, time, 'attachments', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="attachments" id="field_attachments"
+                        [(ngModel)]="time.attachments" />
+                    <input type="hidden" class="form-control" name="attachmentsContentType" id="field_attachmentsContentType"
+                        [(ngModel)]="time.attachmentsContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_notes">Notes</label>
+                    <input type="text" class="form-control" name="notes" id="field_notes"
+                        [(ngModel)]="time.notes" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_projectId">Project Id</label>
+                    <select class="form-control" id="field_projectId" name="projectId" [(ngModel)]="time.projectId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="projectOption.id === time.projectId?.id ? time.projectId : projectOption" *ngFor="let projectOption of projects; trackBy: trackProjectById">{{projectOption.projectId}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_taskId">Task Id</label>
+                    <select class="form-control" id="field_taskId" name="taskId" [(ngModel)]="time.taskId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="taskOption.id === time.taskId?.id ? time.taskId : taskOption" *ngFor="let taskOption of tasks; trackBy: trackTaskById">{{taskOption.taskId}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_subCostCategory">Sub Cost Category</label>
+                    <select class="form-control" id="field_subCostCategory" name="subCostCategory" [(ngModel)]="time.subCostCategory" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="subCostCategoryOption.id === time.subCostCategory?.id ? time.subCostCategory : subCostCategoryOption" *ngFor="let subCostCategoryOption of subcostcategories; trackBy: trackSubCostCategoryById">{{subCostCategoryOption.subCostCategoryDescription}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_payCode">Pay Code</label>
+                    <select class="form-control" id="field_payCode" name="payCode" [(ngModel)]="time.payCode" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="payCodeOption.id === time.payCode?.id ? time.payCode : payCodeOption" *ngFor="let payCodeOption of paycodes; trackBy: trackPayCodeById">{{payCodeOption.payCodeDescription}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
