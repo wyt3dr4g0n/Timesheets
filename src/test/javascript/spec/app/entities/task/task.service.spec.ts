@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(TaskService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Task(0, 'AAAAAAA', 'AAAAAAA', 0);
+            elemDefault = new Task(0, 'AAAAAAA', 'AAAAAAA');
         });
 
         describe('Service methods', async () => {
@@ -56,8 +56,7 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         taskId: 'BBBBBB',
-                        taskDescription: 'BBBBBB',
-                        project: 1
+                        taskDescription: 'BBBBBB'
                     },
                     elemDefault
                 );
@@ -75,8 +74,7 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         taskId: 'BBBBBB',
-                        taskDescription: 'BBBBBB',
-                        project: 1
+                        taskDescription: 'BBBBBB'
                     },
                     elemDefault
                 );

@@ -30,9 +30,6 @@ public class Task implements Serializable {
     @Column(name = "task_description")
     private String taskDescription;
 
-    @Column(name = "project")
-    private Long project;
-
     @ManyToOne
     @JsonIgnoreProperties("")
     private Project projectId;
@@ -70,19 +67,6 @@ public class Task implements Serializable {
 
     public void setTaskDescription(String taskDescription) {
         this.taskDescription = taskDescription;
-    }
-
-    public Long getProject() {
-        return project;
-    }
-
-    public Task project(Long project) {
-        this.project = project;
-        return this;
-    }
-
-    public void setProject(Long project) {
-        this.project = project;
     }
 
     public Project getProjectId() {
@@ -125,7 +109,6 @@ public class Task implements Serializable {
             "id=" + getId() +
             ", taskId='" + getTaskId() + "'" +
             ", taskDescription='" + getTaskDescription() + "'" +
-            ", project=" + getProject() +
             "}";
     }
 }

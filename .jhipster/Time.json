@@ -60,6 +60,10 @@
         {
             "fieldName": "notes",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20181213003834",

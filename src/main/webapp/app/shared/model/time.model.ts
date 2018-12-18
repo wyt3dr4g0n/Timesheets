@@ -15,6 +15,7 @@ export interface ITime {
     attachmentsContentType?: string;
     attachments?: any;
     notes?: string;
+    createdBy?: string;
     projectId?: IProject;
     taskId?: ITask;
     subCostCategory?: ISubCostCategory;
@@ -33,6 +34,7 @@ export class Time implements ITime {
         public attachmentsContentType?: string,
         public attachments?: any,
         public notes?: string,
+        public createdBy?: string,
         public projectId?: IProject,
         public taskId?: ITask,
         public subCostCategory?: ISubCostCategory,

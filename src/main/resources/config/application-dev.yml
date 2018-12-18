@@ -45,7 +45,7 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:sqlserver://localhost:1433;database=TimesheetsDev
-        username: SA
+        username: jhip
         password: plasmA26107
         hikari:
             auto-commit: false

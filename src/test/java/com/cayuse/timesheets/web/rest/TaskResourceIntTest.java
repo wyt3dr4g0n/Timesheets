@@ -45,9 +45,6 @@ public class TaskResourceIntTest {
     private static final String DEFAULT_TASK_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_TASK_DESCRIPTION = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_PROJECT = 1L;
-    private static final Long UPDATED_PROJECT = 2L;
-
     @Autowired
     private TaskRepository taskRepository;
 
@@ -87,8 +84,7 @@ public class TaskResourceIntTest {
     public static Task createEntity(EntityManager em) {
         Task task = new Task()
             .taskId(DEFAULT_TASK_ID)
-            .taskDescription(DEFAULT_TASK_DESCRIPTION)
-            .project(DEFAULT_PROJECT);
+            .taskDescription(DEFAULT_TASK_DESCRIPTION);
         return task;
     }
 
@@ -114,7 +110,6 @@ public class TaskResourceIntTest {
         Task testTask = taskList.get(taskList.size() - 1);
         assertThat(testTask.getTaskId()).isEqualTo(DEFAULT_TASK_ID);
         assertThat(testTask.getTaskDescription()).isEqualTo(DEFAULT_TASK_DESCRIPTION);
-        assertThat(testTask.getProject()).isEqualTo(DEFAULT_PROJECT);
     }
 
     @Test
@@ -148,8 +143,7 @@ public class TaskResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(task.getId().intValue())))
             .andExpect(jsonPath("$.[*].taskId").value(hasItem(DEFAULT_TASK_ID.toString())))
-            .andExpect(jsonPath("$.[*].taskDescription").value(hasItem(DEFAULT_TASK_DESCRIPTION.toString())))
-            .andExpect(jsonPath("$.[*].project").value(hasItem(DEFAULT_PROJECT.intValue())));
+            .andExpect(jsonPath("$.[*].taskDescription").value(hasItem(DEFAULT_TASK_DESCRIPTION.toString())));
     }
     
     @Test
@@ -164,8 +158,7 @@ public class TaskResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(task.getId().intValue()))
             .andExpect(jsonPath("$.taskId").value(DEFAULT_TASK_ID.toString()))
-            .andExpect(jsonPath("$.taskDescription").value(DEFAULT_TASK_DESCRIPTION.toString()))
-            .andExpect(jsonPath("$.project").value(DEFAULT_PROJECT.intValue()));
+            .andExpect(jsonPath("$.taskDescription").value(DEFAULT_TASK_DESCRIPTION.toString()));
     }
 
     @Test
@@ -190,8 +183,7 @@ public class TaskResourceIntTest {
         em.detach(updatedTask);
         updatedTask
             .taskId(UPDATED_TASK_ID)
-            .taskDescription(UPDATED_TASK_DESCRIPTION)
-            .project(UPDATED_PROJECT);
+            .taskDescription(UPDATED_TASK_DESCRIPTION);
 
         restTaskMockMvc.perform(put("/api/tasks")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -204,7 +196,6 @@ public class TaskResourceIntTest {
         Task testTask = taskList.get(taskList.size() - 1);
         assertThat(testTask.getTaskId()).isEqualTo(UPDATED_TASK_ID);
         assertThat(testTask.getTaskDescription()).isEqualTo(UPDATED_TASK_DESCRIPTION);
-        assertThat(testTask.getProject()).isEqualTo(UPDATED_PROJECT);
     }
 
     @Test

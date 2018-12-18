@@ -29,10 +29,6 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="project" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
             <column name="project_id_id" type="bigint">
                 <constraints nullable="true" />
             </column>

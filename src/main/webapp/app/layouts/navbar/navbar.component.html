@@ -5,7 +5,7 @@
         </a>
         <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
             <span class="logo-img"></span>
-            <span class="navbar-title">Timesheets</span> <span class="navbar-version">{{version}}</span>
+            <span class="navbar-title">Cayuse Timesheet Entry</span> 
         </a>
     </div>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
@@ -18,8 +18,16 @@
                     </span>
                 </a>
             </li>
+            <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="time" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon icon="clock"></fa-icon>
+                        <span>Enter Time</span>
+                    </span>
+                </a>
+            </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
                         <fa-icon icon="th-list"></fa-icon>
@@ -57,6 +65,12 @@
                         <a class="dropdown-item" routerLink="time" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
                             <span>Time</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="task" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>Task</span>
                         </a>
                     </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
@@ -119,9 +133,12 @@
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
                   <span *ngIf="!getImageUrl()">
                     <fa-icon icon="user"></fa-icon>
-                    <span>
+                    <span *ngIf="!isAuthenticated()">
                       Account
-                    </span>
+                    </span>	
+					<span *ngIf="account">
+					{{account.firstName}}
+					</span>
                   </span>
                   <span *ngIf="getImageUrl()">
                       <img [src]="getImageUrl()" class="profile-image img-circle" alt="Avatar">

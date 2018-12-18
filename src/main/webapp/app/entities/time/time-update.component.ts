@@ -15,6 +15,7 @@ import { ISubCostCategory } from 'app/shared/model/sub-cost-category.model';
 import { SubCostCategoryService } from 'app/entities/sub-cost-category';
 import { IPayCode } from 'app/shared/model/pay-code.model';
 import { PayCodeService } from 'app/entities/pay-code';
+import { Principal, Account } from 'app/core';
 
 @Component({
     selector: 'jhi-time-update',
@@ -23,7 +24,7 @@ import { PayCodeService } from 'app/entities/pay-code';
 export class TimeUpdateComponent implements OnInit {
     time: ITime;
     isSaving: boolean;
-
+    account: Account;
     projects: IProject[];
 
     tasks: ITask[];
@@ -41,13 +42,17 @@ export class TimeUpdateComponent implements OnInit {
         private taskService: TaskService,
         private subCostCategoryService: SubCostCategoryService,
         private payCodeService: PayCodeService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private principal: Principal
     ) {}
 
     ngOnInit() {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ time }) => {
             this.time = time;
+        });
+        this.principal.identity().then(account => {
+            this.time.createdBy = account.login;
         });
         this.projectService.query().subscribe(
             (res: HttpResponse<IProject[]>) => {

@@ -25,7 +25,7 @@ describe('Service Tests', () => {
             httpMock = injector.get(HttpTestingController);
             currentDate = moment();
 
-            elemDefault = new Time(0, currentDate, 0, 0, 0, 'AAAAAAA', 'AAAAAAA', 'image/png', 'AAAAAAA', 'AAAAAAA');
+            elemDefault = new Time(0, currentDate, 0, 0, 0, 'AAAAAAA', 'AAAAAAA', 'image/png', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
         });
 
         describe('Service methods', async () => {
@@ -77,7 +77,8 @@ describe('Service Tests', () => {
                         billingDescription: 'BBBBBB',
                         description: 'BBBBBB',
                         attachments: 'BBBBBB',
-                        notes: 'BBBBBB'
+                        notes: 'BBBBBB',
+                        createdBy: 'BBBBBB'
                     },
                     elemDefault
                 );
@@ -106,7 +107,8 @@ describe('Service Tests', () => {
                         billingDescription: 'BBBBBB',
                         description: 'BBBBBB',
                         attachments: 'BBBBBB',
-                        notes: 'BBBBBB'
+                        notes: 'BBBBBB',
+                        createdBy: 'BBBBBB'
                     },
                     elemDefault
                 );

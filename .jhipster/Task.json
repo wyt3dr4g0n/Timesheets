@@ -17,10 +17,6 @@
         {
             "fieldName": "taskDescription",
             "fieldType": "String"
-        },
-        {
-            "fieldName": "project",
-            "fieldType": "Long"
         }
     ],
     "changelogDate": "20181212223143",

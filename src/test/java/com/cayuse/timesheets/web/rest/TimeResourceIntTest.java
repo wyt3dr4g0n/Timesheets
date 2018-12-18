@@ -68,6 +68,9 @@ public class TimeResourceIntTest {
     private static final String DEFAULT_NOTES = "AAAAAAAAAA";
     private static final String UPDATED_NOTES = "BBBBBBBBBB";
 
+    private static final String DEFAULT_CREATED_BY = "AAAAAAAAAA";
+    private static final String UPDATED_CREATED_BY = "BBBBBBBBBB";
+
     @Autowired
     private TimeRepository timeRepository;
 
@@ -114,7 +117,8 @@ public class TimeResourceIntTest {
             .description(DEFAULT_DESCRIPTION)
             .attachments(DEFAULT_ATTACHMENTS)
             .attachmentsContentType(DEFAULT_ATTACHMENTS_CONTENT_TYPE)
-            .notes(DEFAULT_NOTES);
+            .notes(DEFAULT_NOTES)
+            .createdBy(DEFAULT_CREATED_BY);
         return time;
     }
 
@@ -147,6 +151,7 @@ public class TimeResourceIntTest {
         assertThat(testTime.getAttachments()).isEqualTo(DEFAULT_ATTACHMENTS);
         assertThat(testTime.getAttachmentsContentType()).isEqualTo(DEFAULT_ATTACHMENTS_CONTENT_TYPE);
         assertThat(testTime.getNotes()).isEqualTo(DEFAULT_NOTES);
+        assertThat(testTime.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
     }
 
     @Test
@@ -187,7 +192,8 @@ public class TimeResourceIntTest {
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].attachmentsContentType").value(hasItem(DEFAULT_ATTACHMENTS_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].attachments").value(hasItem(Base64Utils.encodeToString(DEFAULT_ATTACHMENTS))))
-            .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES.toString())));
+            .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES.toString())))
+            .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())));
     }
     
     @Test
@@ -209,7 +215,8 @@ public class TimeResourceIntTest {
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.attachmentsContentType").value(DEFAULT_ATTACHMENTS_CONTENT_TYPE))
             .andExpect(jsonPath("$.attachments").value(Base64Utils.encodeToString(DEFAULT_ATTACHMENTS)))
-            .andExpect(jsonPath("$.notes").value(DEFAULT_NOTES.toString()));
+            .andExpect(jsonPath("$.notes").value(DEFAULT_NOTES.toString()))
+            .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY.toString()));
     }
 
     @Test
@@ -241,7 +248,8 @@ public class TimeResourceIntTest {
             .description(UPDATED_DESCRIPTION)
             .attachments(UPDATED_ATTACHMENTS)
             .attachmentsContentType(UPDATED_ATTACHMENTS_CONTENT_TYPE)
-            .notes(UPDATED_NOTES);
+            .notes(UPDATED_NOTES)
+            .createdBy(UPDATED_CREATED_BY);
 
         restTimeMockMvc.perform(put("/api/times")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -261,6 +269,7 @@ public class TimeResourceIntTest {
         assertThat(testTime.getAttachments()).isEqualTo(UPDATED_ATTACHMENTS);
         assertThat(testTime.getAttachmentsContentType()).isEqualTo(UPDATED_ATTACHMENTS_CONTENT_TYPE);
         assertThat(testTime.getNotes()).isEqualTo(UPDATED_NOTES);
+        assertThat(testTime.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
     }
 
     @Test

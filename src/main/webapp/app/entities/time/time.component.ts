@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
 import { ITime } from 'app/shared/model/time.model';
-import { Principal } from 'app/core';
+import { Principal, Account } from 'app/core';
 import { TimeService } from './time.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { TimeService } from './time.service';
 })
 export class TimeComponent implements OnInit, OnDestroy {
     times: ITime[];
-    currentAccount: any;
+    currentAccount: Account;
     eventSubscriber: Subscription;
 
     constructor(
@@ -46,6 +46,13 @@ export class TimeComponent implements OnInit, OnDestroy {
     }
 
     trackId(index: number, item: ITime) {
+        return item.id;
+    }
+
+    trackUser(index: number, item: ITime) {
+        if (item.createdBy !== this.currentAccount.login) {
+            return null;
+        }
         return item.id;
     }
 

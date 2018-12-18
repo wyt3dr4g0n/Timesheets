@@ -53,6 +53,9 @@ public class Time implements Serializable {
     @Column(name = "notes")
     private String notes;
 
+    @Column(name = "created_by")
+    private String createdBy;
+
     @ManyToOne
     @JsonIgnoreProperties("")
     private Project projectId;
@@ -195,6 +198,19 @@ public class Time implements Serializable {
         this.notes = notes;
     }
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public Time createdBy(String createdBy) {
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
     public Project getProjectId() {
         return projectId;
     }
@@ -281,6 +297,7 @@ public class Time implements Serializable {
             ", attachments='" + getAttachments() + "'" +
             ", attachmentsContentType='" + getAttachmentsContentType() + "'" +
             ", notes='" + getNotes() + "'" +
+            ", createdBy='" + getCreatedBy() + "'" +
             "}";
     }
 }
